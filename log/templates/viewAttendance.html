@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} VIEW ATTENDANCE {% endblock title %}
+
+{% block body %}
+<div class="main">
+	<div class="container">
+		<div class="main2">
+			<h1>View Attendance</h1>
+			<form method="post" action="">
+				{% csrf_token %}
+				<div style="padding: 1% 5%;">
+				<label for="date">Select Date:</label>
+				<input type="date" id="date" name="date" required>
+				<br>
+				<label for="subject">Select Subject:</label>
+				<select name="subject" class="form-control" id="subjectSelect" required>
+					{% for subject in subjects %}
+					<option value="{{ subject }}">{{ subject }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="table-btn btn btn-primary">Submit</button>
+				</div>
+			</form>
+
+			<table class="table table-success table-striped">
+				<thead>
+					<tr>
+					<th>Name</th>
+					<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for attendance in attendance_data %}
+					<tr>
+						<td>{{ attendance.student }}</td>
+						{% if attendance.is_present  %}
+							<td style="color:blue;">Present</td>
+						{% else %}
+							<td style="color: red;">Absent</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+{% endblock body %}

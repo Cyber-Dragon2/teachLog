@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% block title %} HOME {% endblock title %} 
+
+{% block head %} 
+{% load static %}
+<link rel="stylesheet" href="{% static '/home.css' %}" />
+{% endblock head %} 
+
+{% block body %}
+<div class="main">
+	{% if user.is_authenticated %}
+	<div class="container">
+		<h1>Greetings, {{ request.user }}</h1>
+		<h2>{{ teacherSubject }} Subject Teacher of B.Tech (H) Sem-2 Students</h2>
+		<div class="main2">
+			<button type="submit" class="table-btn btn btn-primary" name='takeAttendance'><a href="take/" style="text-decoration: none; color: white;">take Attendance</a></button>
+			<button type="submit" class="table-btn btn btn-primary" name='viewAttendance'><a href="view/" style="text-decoration: none; color: white;">View Attendance</a></button>
+			<button type="submit" class="table-btn btn btn-primary" name='viewReport'><a href="report/" style="text-decoration: none; color: white;">View Report</a></button>
+		</div>
+	</div>
+	{% else %}
+	<div class="container">
+		<div class="main2">
+			<h4>"Welcome to <strong>Teach Log</strong>, the ultimate solution for seamless subject attendance management! Our intuitive platform empowers teachers to effortlessly track and record Btech student attendance for their assigned subjects. With user-friendly interfaces and robust features, educators can efficiently manage attendance, view comprehensive reports, and ensure accountability with just a few clicks. Designed to streamline the daily attendance process, <strong>Teach Log</strong> simplifies administrative tasks, allowing teachers to focus on what truly matters – providing quality education. Join us in revolutionizing attendance management and enhancing classroom efficiency today!"</h4>
+			<p style="text-align: center;"><strong>Developer: Amritpal Singh</strong></p>
+		</div>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock body %}

@@ -1,0 +1,22 @@
+.navbar a{
+	color: white;
+	text-decoration: none;
+	transition: opacity 1s ease-in-out;
+}
+
+.navbar .nav-link:hover{
+	opacity: 0.8;
+	color: white;
+	border-bottom: 2px solid white;
+}
+body{
+	background-color: rgb(195, 226, 255);
+}
+h3{
+	color: white;
+}
+
+div .dropdown-item{
+	color: black;
+}
+

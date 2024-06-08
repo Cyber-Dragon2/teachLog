@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} REPORT {% endblock title %}
+
+{% block body %}
+<div class="main">
+	<div class="container">
+		<div class="main2">
+			<h1>View Report</h1>
+			<form method="post" action="">
+				{% csrf_token %}
+				<div style="padding: 1% 5%;">
+				<label for="student">Select Student Name:</label>
+				<select name="student" class="form-control" id="studentSelect" required>
+					{% for student in students %}
+					<option value="{{ student.id }}">{{ student.name }}</option>
+					{% endfor %}
+				</select>
+				<label for="subject">Select Subject</label>
+				<select name="subject" class="form-control" id="subjectSelect" required>
+					{% for subject in subjects %}
+					<option value="{{ subject.id }}">{{ subject.name }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="table-btn btn btn-primary">Submit</button>
+				</div>
+			</form>
+
+
+			<!-- Display individual attendance report -->
+			{% if attendance_report %}
+			<h2><strong>{{ attendance_report.student }}'s</strong> Attendance Report Of</h2>
+			<hr>
+			<h2>Subject: <strong>{{ attendance_report.subject }}</strong></h2>
+			<ul>
+				<li><h4>Total Classes Attended: {{ attendance_report.total_classes_attended }}</h4></li>
+				<li><h4>Total Classes Held: {{ attendance_report.total_classes_held }}</h4></li>
+				<li><h4>Attendance Percentage: {{ attendance_report.attendance_percentage }}%</h4></li>
+			</ul>
+			
+			{% endif %}
+
+			{% if result %}
+			<h1>{{ result }}</h1>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock body %}
